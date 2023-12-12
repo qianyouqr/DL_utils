@@ -78,7 +78,7 @@ def VOC2Yolo(class_num, voc_img_path, voc_xml_path, yolo_txt_save_path, yolo_img
 """
 def split_img(img_path, label_path, split_list):
     try:
-        Data = 'G:/orange_yolo_dataset'
+        Data = 'C:/datasets/orange_v1/VOC2007/yolo'
         # Data是你要将要创建的文件夹路径（路径一定是相对于你当前的这个脚本而言的）
         # os.mkdir(Data)
 
@@ -139,18 +139,21 @@ def toLabelPath(img_path, label_path):
 
 if __name__ == '__main__':
 
-    # 先将voc数据集 转成 yolo格式的数据集['seed','bivalve','broken','diseased','membrance','peel', 'spongy']
+    # step1:
+    # # 先将voc数据集 转成 yolo格式的数据集['seed','bivalve','broken','diseased','membrance','peel', 'spongy']
     # VOC2Yolo(
     #     class_num={'seed':0,'bivalve':1,'broken':2,'diseased':3,'membrance':4,'peel':5, 'spongy':6},  # 标签种类
-    #     voc_img_path='G:/orange_voc2/VOC2007/JPEGImages',  # 数据集图片文件夹存储路径
-    #     voc_xml_path='G:/orange_voc2/VOC2007/Annotations',  # 标签xml文件夹存储路径
-    #     yolo_txt_save_path='D:/QR/vscodeSpace/yolov7-main/dataset/YoloLabels'  # 将要生成的txt文件夹存储路径
+    #     voc_img_path='C:/datasets/orange_v1/VOC2007_all/VOC2007/JPEGImages',  # 数据集图片文件夹存储路径
+    #     voc_xml_path='C:/datasets/orange_v1/VOC2007_all/VOC2007/Annotations',  # 标签xml文件夹存储路径
+    #     yolo_txt_save_path='C:/datasets/orange_v1/VOC2007_all/VOC2007/YoloLabels'  # 将要生成的标注文件  txt文件夹存储路径  
     # )
 
-
-
-    img_path = 'G:/orange_voc2/VOC2007/JPEGImages'  # 你的图片存放的路径（路径一定是相对于你当前的这个脚本文件而言的）
-    label_path = 'D:/QR/vscodeSpace/yolov7-main/dataset/YoloLabels'  # 你的txt文件存放的路径（路径一定是相对于你当前的这个脚本文件而言的）
-    split_list = [0.8, 0.1, 0.1]  # 数据集划分比例[train:val:test]
+    # step2:
+    # 所分割的数据集所有的 图片文件目录
+    img_path = 'C:/datasets/orange_v1/VOC2007/JPEGImages'  # 你的图片存放的路径（路径一定是相对于你当前的这个脚本文件而言的）
+    # 所分割的数据集所有的 标签文件目录
+    label_path = 'C:/datasets/orange_v1/VOC2007/YoloLabels'  # 你的txt文件存放的路径 这个目录是step1中设置的yolo_txt_save_path（路径一定是相对于你当前的这个脚本文件而言的）
+    split_list = [0.8, 0.15, 0.15]  # 数据集划分比例[train:val:test]
+    # 在方法里面设置 要保存到的目录
     split_img(img_path, label_path, split_list)
 
