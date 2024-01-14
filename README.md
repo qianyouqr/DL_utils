@@ -46,8 +46,54 @@ https://github.com/qianyouqr/DL_utils/blob/main/showLabel.py
 **第三步**，修改yolov7代码中的yaml文件  
 ![image](https://github.com/qianyouqr/DL_utils/assets/68421771/7bb42c96-9d7f-4d24-ad0e-3ed5dcc72ce3)  
 之后调整参数进行训练即可。  
+## 3 计算模型的mAP  
+### 3.1计算效果  
+![image](https://github.com/qianyouqr/DL_utils/assets/68421771/6cd48042-1f96-4d18-8c04-3f780452f2c1)  
+除此之外，还有结果图像的绘制  
+### 3.2数据格式要求  
+真实值标签数据格式:  
+【类名 left, top, right, bottom】  
+![image](https://github.com/qianyouqr/DL_utils/assets/68421771/0191d4fc-ca46-4d44-af0d-5bf9fb270209)  
+推理后形成的txt文件格式：  
+【类名编号 置信度 left, top, right, bottom】  
+![image](https://github.com/qianyouqr/DL_utils/assets/68421771/529e026e-e6cb-45d4-a324-7f965dbffe10)  
+### 3.3代码路径设置  
+1. `base_path`
+保存mAP结果的目录：  
+```
+base_path = 'D:/code/orin_nano/map_result/yolov7'
+```
+![image](https://github.com/qianyouqr/DL_utils/assets/68421771/0077e929-8cd7-4be2-82f4-806523a489af)  
+2. `test_gt_impoved`  
+真实值标签的路径  
+```
+test_gt_impoved = 'C:/datasets/orange_v3/yolo/labels/test_impoved'
+```
+![image](https://github.com/qianyouqr/DL_utils/assets/68421771/e59acabf-1051-4e73-837b-6be66089e3cf)  
+3. `label_path`  
+需要计算mAP的检测结果的路径  
+```
+label_path = 'D:/code/orin_nano/best_YoloV7_FP32_result_txt_official'
+```
+![image](https://github.com/qianyouqr/DL_utils/assets/68421771/66e9025e-9fd6-4f2d-8355-1e1c888e59b2)  
+4. `image_path`  
+所推理的图片的目录  
+```
+image_path = 'C:/datasets/orange_v3/yolo/images/test'
+```
+用来获取图像的尺度信息。  
+5. 修改检测类型信息  
+在`cls_name`函数中修改类名字典，类名编号和类名字符串对应关系要和训练时设置的一样。
+![image](https://github.com/qianyouqr/DL_utils/assets/68421771/8739ebee-66ef-4d0a-b765-2096dbed12da)  
 
-* 待补充..
+修改完这些路径信息，执行`compute_mAP.py`即可。
+
+
+
+
+
+
+
 
 
 
